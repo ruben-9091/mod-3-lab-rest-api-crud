@@ -1,14 +1,17 @@
-require('dotenv').config();
+require("dotenv").config();
+require("./lib/db");
 
-const express = require('express');
+const express = require("express");
+const apiRouter = require("./controllers");
+const { errors } = require("./middlewares");
 
 const app = express();
 
 app.use(express.json());
 
-// TODO: mount your API router here
-
-// TODO: mount your error handlers here
+app.use("/api/v1", apiRouter);
+app.use(errors.notFound);
+app.use(errors.globalHandler);
 
 const PORT = process.env.PORT || 3000;
 

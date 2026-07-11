@@ -1,3 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const config = require("./config");
 
-// TODO: connect to MongoDB using mongoose.connect and process.env.MONGODB_URI
+mongoose
+  .connect(config.get("db.uri"))
+  .then(() => console.info("Connected successfully"))
+  .catch((error) => {
+    console.error("An error occurred while connecting to the database", error);
+    process.exit(0);
+  });
