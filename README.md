@@ -17,6 +17,8 @@ The project skeleton is already set up for you:
 
 The goal is to wire up your first route end-to-end.
 
+A **probe** (or health check) is a lightweight endpoint that returns a simple response to confirm the server is up and reachable. It is commonly used by monitoring tools, load balancers and deployment pipelines to verify that a service is running correctly — without touching the database or any business logic.
+
 **Steps:**
 
 1. Create `src/controllers/index.js`. It should export an Express `Router`.
