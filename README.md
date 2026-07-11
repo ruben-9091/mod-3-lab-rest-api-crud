@@ -228,7 +228,9 @@ Right now the app reads `process.env.PORT` and `process.env.MONGODB_URI` directl
 >   db: {
 >     uri: {
 >       doc: 'MongoDB connection URI',
->       format: String,
+>       format: (val) => {
+>         if (!val) throw new Error('MONGODB_URI is required');
+>       },
 >       default: null,
 >       env: 'MONGODB_URI',
 >     },
@@ -241,3 +243,13 @@ Right now the app reads `process.env.PORT` and `process.env.MONGODB_URI` directl
 > ```
 >
 > Convict's built-in `'port'` format validates that the value is an integer between 1 and 65535. See all built-in formats in the [convict docs](https://github.com/mozilla/node-convict/tree/master/packages/convict#built-in-formats).
+>
+> **Making a field required:** passing `format: String` with `default: null` does _not_ make a field required — convict accepts `null` as valid. To enforce that a value must be present, pass a **validator function** instead:
+>
+> ```js
+> format: (val) => {
+>   if (!val) throw new Error('MONGODB_URI is required');
+> },
+> ```
+>
+> Convict calls that function during `config.validate()` and throws immediately if the value is falsy. This pattern works for any field — the `format` property is not just a type, it's an arbitrary validator.
