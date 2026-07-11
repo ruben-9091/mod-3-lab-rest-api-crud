@@ -1,0 +1,17 @@
+{
+  "name": "mod-3-lab-rest-api-crud",
+  "version": "1.0.0",
+  "description": "Lab: REST API CRUD with Express & Mongoose",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
+  },
+  "dependencies": {
+    "convict": "^6.2.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "http-errors": "^2.0.0",
+    "mongoose": "^8.9.0"
+  }
+}
